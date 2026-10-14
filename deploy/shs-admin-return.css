@@ -1,0 +1,33 @@
+#shs-admin-return {
+  position: fixed;
+  top: 14px;
+  right: 24px;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid #d6a83c;
+  border-radius: 8px;
+  background: #171914;
+  color: #f4cf63;
+  font: 600 13px/1 system-ui, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgb(0 0 0 / 35%);
+}
+
+#shs-admin-return:hover,
+#shs-admin-return:focus-visible {
+  background: #f4cf63;
+  color: #171914;
+  outline: 2px solid #f4cf63;
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  #shs-admin-return {
+    top: auto;
+    right: 12px;
+    bottom: 12px;
+  }
+}

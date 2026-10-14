@@ -49,7 +49,7 @@ Hermes fournit nativement les profils isolés, le Kanban partagé, les dépendan
 
 ## Accès et authentification
 
-Le site vitrine est servi sur `https://vps-f61d79c0.vps.ovh.net/`. Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte et nginx le transmet sur `https://vps-f61d79c0.vps.ovh.net:9443/`. Avant chaque transmission, nginx interroge la session du portail et exige le rôle `ADMIN`; sinon il redirige vers `/connexion-admin?next=hermes`. Hermes conserve ensuite sa propre authentification OAuth Nous Portal en défense en profondeur. Les routes `/api/plugins/` restent refusées par nginx.
+Le site vitrine est servi sur `https://vps-f61d79c0.vps.ovh.net/`. Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte et nginx le transmet sur `https://vps-f61d79c0.vps.ovh.net:9443/`. Avant chaque transmission, nginx interroge la session du portail et exige le rôle `ADMIN`; sinon il redirige vers `/connexion-admin?next=hermes`. Hermes conserve ensuite sa propre authentification OAuth Nous Portal en défense en profondeur. Un lien injecté par le proxy permet de revenir à `/administration` depuis toutes les pages HTML du dashboard. Les routes `/api/plugins/` restent refusées par nginx.
 
 Pour un contrôle local de secours sans passer par l'adresse publique :
 
