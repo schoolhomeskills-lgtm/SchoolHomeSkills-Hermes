@@ -1,0 +1,10 @@
+[Unit]
+Description=Sauvegarde quotidienne Payload SchoolHomeSkills
+
+[Timer]
+OnCalendar=*-*-* 03:40:00 UTC
+RandomizedDelaySec=20m
+Persistent=true
+
+[Install]
+WantedBy=timers.target

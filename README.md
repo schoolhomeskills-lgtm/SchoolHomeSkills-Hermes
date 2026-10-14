@@ -7,10 +7,11 @@ Ce dépôt est volontairement public et ne contient ni secret, ni session Hermes
 ## État du pilote
 
 - Version Hermes épinglée : `v0.21.6` (`sha256:55e192fba0cd4fde61142abbff5adeacff40efdb482ccd0ff877924bd274f909`).
+- Inférence : abonnement ChatGPT/Codex via `openai-codex`, modèle vérifié `gpt-6.1-sol`, sans clé API active ni fournisseur de repli.
 - Profils séparés : `coordinateur`, `marketing`, `redaction`, `directionartistique`, plus `web` limité aux brouillons.
 - Wiki serveur : référence en lecture seule, propositions et livrables séparés.
 - Coordination : Kanban Hermes durable pour les tâches techniques ; les validations métier exactes restent appliquées par le moteur SchoolHomeSkills.
-- Publication Payload : jamais implicite. Le pilote s’arrête au brouillon écrit puis relu.
+- Payload 3.90.2 : service privé sur `127.0.0.1:3001`, brouillon technique écrit et relu ; publication jamais implicite.
 
 ## Architecture
 
@@ -71,6 +72,7 @@ Dans Hermes, choisir le profil `coordinateur` et tester :
 - Arrêt d’urgence : `sudo docker exec hermes hermes pause`
 - Reprise : `sudo docker exec hermes hermes resume`
 - Sauvegarde : `sudo /usr/local/sbin/shs-hermes-backup`
+- Sauvegarde Payload : `sudo /usr/local/sbin/shs-payload-backup`
 - Restauration : voir [`docs/exploitation.md`](docs/exploitation.md)
 
 ## Limites importantes
