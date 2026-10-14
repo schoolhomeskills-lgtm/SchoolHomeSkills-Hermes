@@ -65,6 +65,7 @@ Dans Hermes, choisir le profil `coordinateur` et tester :
 
 ## Exploitation
 
+- Installation des commandes et de la sauvegarde quotidienne : `sudo deploy/install-operations.sh`
 - État : `sudo /usr/local/sbin/shs-hermes-status`
 - Journaux : `sudo docker logs --tail 200 hermes`
 - Arrêt d’urgence : `sudo docker exec hermes hermes pause`
