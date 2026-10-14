@@ -47,9 +47,9 @@ Hermes fournit nativement les profils isolés, le Kanban partagé, les dépendan
 
 ## Accès et authentification
 
-Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte. nginx termine HTTPS et transmet WebSocket. Une URL publique exige le fournisseur OAuth Nous Portal ou un OIDC conforme. Le compte SchoolHomeSkills et le compte Hermes ne forment pas automatiquement un SSO : une connexion unique nécessite un fournisseur OIDC commun ou une intégration officiellement compatible, non incluse dans ce pilote.
+Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte. nginx termine HTTPS et transmet WebSocket sur une origine dédiée : `https://vps-f61d79c0.vps.ovh.net:9443/`. L'ancienne adresse `/hermes/` redirige vers cette origine. L'accès public exige le fournisseur OAuth Nous Portal ; les routes `/api/plugins/` sont refusées par nginx. Le compte SchoolHomeSkills et le compte Hermes ne forment pas automatiquement un SSO : une connexion unique nécessite un fournisseur OIDC commun ou une intégration officiellement compatible, non incluse dans ce pilote.
 
-Pour un premier contrôle sans exposition publique :
+Pour un contrôle local de secours sans passer par l'adresse publique :
 
 ```bash
 ssh -L 9119:127.0.0.1:9119 ubuntu@votre-vps

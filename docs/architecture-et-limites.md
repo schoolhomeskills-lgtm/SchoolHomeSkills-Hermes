@@ -27,9 +27,9 @@
 
 ## Accès public
 
-Le backend reste lié à `127.0.0.1`. nginx fournit HTTPS et WebSocket. Pour Internet, utiliser OAuth Nous Portal ou un OIDC commun. Le fournisseur Hermes par mot de passe est réservé à un réseau de confiance/VPN.
+Le backend reste lié à `127.0.0.1:9119`. nginx fournit HTTPS et WebSocket sur l'origine dédiée `https://vps-f61d79c0.vps.ovh.net:9443/`, protégée par OAuth Nous Portal. L'adresse historique `/hermes/` redirige vers cette origine. Le fournisseur Hermes par mot de passe est réservé à un réseau de confiance/VPN.
 
-Les routes `/api/plugins/` demandent une attention spéciale : le modèle de sécurité du Kanban prévoit un usage localhost. Une exposition publique sûre impose une protection externe couvrant aussi ces routes, ou leur refus au proxy jusqu’à ce qu’une authentification amont les protège.
+Les routes `/api/plugins/` demandent une attention spéciale : le modèle de sécurité du Kanban prévoit un usage localhost. Elles sont donc refusées par le proxy public sur ce déploiement.
 
 ## Différences Web/Desktop
 
