@@ -1,0 +1,11 @@
+[Unit]
+Description=Sauvegarde du portail SchoolHomeSkills
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/shs-portal-backup
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7

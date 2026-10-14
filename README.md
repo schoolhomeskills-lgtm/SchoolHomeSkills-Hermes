@@ -12,13 +12,14 @@ Ce dépôt est volontairement public et ne contient ni secret, ni session Hermes
 - Wiki serveur : référence en lecture seule, propositions et livrables séparés.
 - Coordination : Kanban Hermes durable pour les tâches techniques ; les validations métier exactes restent appliquées par le moteur SchoolHomeSkills.
 - Payload 3.90.2 : service privé sur `127.0.0.1:3001`, brouillon technique écrit et relu ; publication jamais implicite.
+- Portail : site vitrine public sur HTTPS, administration authentifiée et garde d’accès obligatoire devant Hermes.
 
 ## Architecture
 
 ```mermaid
 flowchart LR
   U[Jonathan] --> P[Administration SchoolHomeSkills]
-  U --> H[Hermes Dashboard]
+  P -->|session ADMIN vérifiée par nginx| H[Hermes Dashboard]
   H --> C[Coordinateur]
   C --> M[Marketing]
   C --> D[Direction artistique]
@@ -48,7 +49,7 @@ Hermes fournit nativement les profils isolés, le Kanban partagé, les dépendan
 
 ## Accès et authentification
 
-Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte. nginx termine HTTPS et transmet WebSocket sur une origine dédiée : `https://vps-f61d79c0.vps.ovh.net:9443/`. L'ancienne adresse `/hermes/` redirige vers cette origine. L'accès public exige le fournisseur OAuth Nous Portal ; les routes `/api/plugins/` sont refusées par nginx. Le compte SchoolHomeSkills et le compte Hermes ne forment pas automatiquement un SSO : une connexion unique nécessite un fournisseur OIDC commun ou une intégration officiellement compatible, non incluse dans ce pilote.
+Le site vitrine est servi sur `https://vps-f61d79c0.vps.ovh.net/`. Le tableau de bord Hermes écoute uniquement sur `127.0.0.1:9119` côté hôte et nginx le transmet sur `https://vps-f61d79c0.vps.ovh.net:9443/`. Avant chaque transmission, nginx interroge la session du portail et exige le rôle `ADMIN`; sinon il redirige vers `/connexion-admin?next=hermes`. Hermes conserve ensuite sa propre authentification OAuth Nous Portal en défense en profondeur. Les routes `/api/plugins/` restent refusées par nginx.
 
 Pour un contrôle local de secours sans passer par l'adresse publique :
 
@@ -73,6 +74,7 @@ Dans Hermes, choisir le profil `coordinateur` et tester :
 - Reprise : `sudo docker exec hermes hermes resume`
 - Sauvegarde : `sudo /usr/local/sbin/shs-hermes-backup`
 - Sauvegarde Payload : `sudo /usr/local/sbin/shs-payload-backup`
+- Sauvegarde portail : `sudo /usr/local/sbin/shs-portal-backup`
 - Restauration : voir [`docs/exploitation.md`](docs/exploitation.md)
 
 ## Limites importantes
