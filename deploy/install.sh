@@ -23,7 +23,6 @@ docker rm -f hermes 2>/dev/null || true
 docker create \
   --name hermes \
   --restart unless-stopped \
-  --init \
   --memory 4g \
   --cpus 2 \
   --shm-size 1g \
